@@ -38,11 +38,31 @@ adoDotNetExample.Update(1, "test title", "test author", "test content");
 adoDotNetExample.Delete(1);
 adoDotNetExample.Edit(3);
 Console.ReadLine();*/
-using HHTDotNetCore.ConsoleApp.EFCoreExmaples;
+//using HHTDotNetCore.ConsoleApp.EFCoreExmaples;
 
 //DapperExample dapperExample = new DapperExample();
 //dapperExample.Run();
 
 
-EFCoreExample eFCoreExample = new EFCoreExample();
+//EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Run();
+using HHTDotNetCore.ConsoleApp.AdoDotNetExamples;
+using HHTDotNetCore.ConsoleApp.DapperExamples;
+using HHTDotNetCore.ConsoleApp.EFCoreExmaples;
+using HHTDotNetCore.ConsoleApp.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Data.SqlClient;
+
+var connectString = ConnectionStrings.SqlConnectionStringBuilder.ConnectionString;
+var sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
+var serviceProvider = new ServiceCollection()
+    .AddScoped<AdoDotNetExample>(n => new AdoDotNetExample(sqlConnectionStringBuilder))
+     .AddScoped<DapperExample>(n => new DapperExample(sqlConnectionStringBuilder))
+    .AddDbContext<AppDbContext>(opt =>
+    {
+        opt.UseSqlServer();
+    })
+    .BuildServiceProvider() ;
+AppDbContext db = serviceProvider.GetRequiredService<AppDbContext>();
+Console.ReadLine();

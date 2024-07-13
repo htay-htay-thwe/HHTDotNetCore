@@ -9,15 +9,23 @@ using System.Threading.Tasks;
 
 namespace HHTDotNetCore.ConsoleApp.AdoDotNetExamples
 {
-    internal class AdoDotNetExample
+public class AdoDotNetExample
     {
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //{
+        //    DataSource = "DESKTOP-QNI7OO1",
+        //    InitialCatalog = "DotNEtTrainingBatch4",
+        //    UserID = "sa",
+        //    Password = "sasa@123",
+        //};
+
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+        private SqlConnectionStringBuilder sqlConnectionStringBuilder;
+
+        public AdoDotNetExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            DataSource = "DESKTOP-QNI7OO1",
-            InitialCatalog = "DotNEtTrainingBatch4",
-            UserID = "sa",
-            Password = "sasa@123",
-        };
+            this.sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
 
         public void Read()
         {

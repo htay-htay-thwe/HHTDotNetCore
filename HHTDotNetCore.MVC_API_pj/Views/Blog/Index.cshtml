@@ -1,0 +1,32 @@
+﻿@model List<BlogModel>
+@{
+    ViewData["Title"] = "Blog";
+    int Count = 0;
+}
+<div>@Model.Count</div>
+<a href="/Blog/Create" class="btn btn-success">Create</a>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Content</th>
+            </tr>
+    </thead>
+    <tbody>
+        @foreach(BlogModel item in Model)
+        {
+            <tr>
+                <td><a class="btn btn-primary" href="/Blog/Edit/@item.BlodId">Edit</a></td>
+                <td><a class="btn btn-danger" href="/Blog/Delete/@item.BlodId">Delete</a></td>
+                <td>@(++Count)</td>
+                <td>@item.BlogTitle</td>
+                <td>@item.BlogAuthor</td>
+                <td>@item.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</table>

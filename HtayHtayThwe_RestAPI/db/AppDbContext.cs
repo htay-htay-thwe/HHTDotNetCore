@@ -9,12 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HtayHtayThwe_RestAPI.db
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        public AppDbContext(DbContextOptions options):base(options)
+        { 
+
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        //}
         public DbSet<BlogModel> Blogs { get; set; }
 
     }

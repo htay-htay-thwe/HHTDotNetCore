@@ -13,6 +13,13 @@ namespace HHTDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
+        private SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public DapperExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
+        {
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
+
         public void Run()
         {
             //Read();

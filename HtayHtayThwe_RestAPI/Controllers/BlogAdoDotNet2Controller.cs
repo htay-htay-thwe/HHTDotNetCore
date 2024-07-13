@@ -12,7 +12,13 @@ namespace HtayHtayThwe_RestAPI.Controllers
     [ApiController]
     public class BlogAdoDotNet2Controller : ControllerBase
     {
-        private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        //private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        private readonly AdoDotNetService _doDotNetService;
+
+        public BlogAdoDotNet2Controller(AdoDotNetService doDotNetService)
+        {
+            _doDotNetService = doDotNetService;
+        }
 
         [HttpGet]
             public IActionResult GetBlogs()
